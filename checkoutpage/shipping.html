@@ -29,8 +29,8 @@
      width: 100%;
      height: 46px;
      font-size: 20px;
-     color: white;
-     background-color: black;
+
+    
  }
  input{
      width: 99%;
@@ -38,9 +38,7 @@
      margin-top: -40px;
      margin-bottom: 30px
  }
- hr{
-    
- }
+
  #lbox>p{
      font-size: 20px;
  }
@@ -56,9 +54,18 @@
    
  }
  #container{
-     height: 100px;
-     border: 1px solid black;
-     margin-bottom: 10px;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+    margin-bottom: 10px;
+
+    margin-top: 20px;
+}
+#container >div{
+  display: flex;
+  border-bottom: 1px solid;
+  
+}
+#container >div>img{
+    width: 30%;
  }
  #rbox>p{
      font-size: 20px;
@@ -101,6 +108,8 @@
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     padding-top: 20px;
     padding-bottom: 20px;
+    
+   
   
  }
  #method >div{
@@ -108,6 +117,7 @@
      justify-content: space-between;
      padding-left: 10px;
     padding-right: 10px;
+
  }
  #method >div>input{
      width: 20px;
@@ -122,12 +132,28 @@
 #lbox>h3{
     color: gray;
 }
+#inner{
+    padding-left: 15px;
+     padding-right: 15px;
+   
+ }
+ #lastbtn{
+     margin-top: 10px;
+     font-size: 20px;
+     background-color:  #f7f7f7;
+ }
+ #lastbtn:hover{
+     background-color: black;
+     color: white;
+ }
 </style>
 <body>
     <div id="main">
         <div id="lbox">
             <h2>Contact</h3>
-                <div id="contact"></div>
+                <div id="contact"> 
+                    <p id="para1"></p>
+                </div>
                 <hr>
                 <h2>Shipping</h2>
                 <hr>
@@ -150,7 +176,7 @@
         </div>
         <div class="ad">
             <h4>Address 2</h4>
-            <input type="text" id="add1">
+            <input type="text" id="add2">
         </div>
         <div id="city">
            <div>
@@ -193,6 +219,7 @@
                     <div>
                         <input type="radio" value="Ground (2-6 Business Day)" name="Shipping">Ground (2-6 Business Day)
                         <p>$5.95</p>
+                      
                     </div>
                     <hr>
                     <div>
@@ -207,6 +234,7 @@
                   
                 </div>
             </div>
+            <button id="lastbtn">Continue</button>
             <div>
                 <h2>Payment</h2>
                 <hr>
@@ -220,23 +248,23 @@
 
  </div>
  <div id="total">
- <div>
-     <p>Subtotal</p>
-     <p>$148.00</p>
- </div>
- <div>
-     <p>Estimated Tax</p>
-     <p>--</p>
- </div>
- <div>
-     <p>Shipping</p>
-     <p>--</p>
- </div>
- <hr>
- <div>
- <h3>TOTAL <span>(2 Items)</span></h3>
- <p>$148.00</p>
-</div>
+    <div>
+        <p>Subtotal</p>
+        <p id="subtotal"></p>
+    </div>
+    <div>
+        <p>Estimated Tax</p>
+        <p>--</p>
+    </div>
+    <div>
+        <p>Shipping</p>
+        <p>--</p>
+    </div>
+    <hr>
+    <div>
+    <h3>TOTAL <span>(2 Items)</span></h3>
+    <p id="estimate"></p>
+   </div>
 </div>
         </div>
     </div>
@@ -246,4 +274,65 @@
         <p>Privacy Policy | Product + Help Center  | Shipping</p> 
     </div>
 </body>
+<script>
+
+ document.querySelector("#lastbtn").addEventListener("click",btnfunction)
+
+function btnfunction(){
+   var name=document.querySelector("#name").value
+   var lastname=document.querySelector("#lastname").value
+   console.log(name,lastname)
+   var Address=document.querySelector("#add1").value
+   var city=document.querySelector("#cty").value
+   var state=document.querySelector("#state").value
+   var pin=document.querySelector("#pincode").value
+   var phone=document.querySelector("#number").value
+   
+}
+
+
+
+
+
+var contact= localStorage.getItem("Email")
+console.log(contact)
+var textcontact=document.querySelector("#para1")
+textcontact.innerText=contact
+
+
+
+var estimate=localStorage.getItem("total")
+      var subtotal=document.querySelector("#subtotal")
+          subtotal.innerText= "$"+estimate+".00"
+      var Total=document.querySelector("#estimate")
+          Total.innerText= "$"+estimate+".00"
+
+    
+    var productbag=JSON.parse(localStorage.getItem("productbag"))
+    productbag.map(function(el,i){
+        var box=document.createElement("div")
+        var img=document.createElement("img")
+        img.src=el.image_url
+        var box2=document.createElement("div")
+        box2.setAttribute("class","innerbox")
+        
+        var box3=document.createElement("div")
+         var name=document.createElement("h3")
+       name.innerText=el.name
+       var para=document.createElement("p")
+       para.innerText="Qty: 1"
+       box3.append(name,para)
+        var box4=document.createElement("div")
+       var price=document.createElement("p")
+         price.innerText="$"+el.price +".00"
+         box4.append(price)
+       box2.append(box3,box4)
+      box.append(img,box2)
+
+    
+      
+      document.querySelector("#container").append(box)
+
+    })
+</script>
 </html>
