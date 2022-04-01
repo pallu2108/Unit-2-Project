@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Checkout Page</title>
     <style>
         #main{
            display: flex;
@@ -120,14 +120,14 @@ background-color: white;
 
 }
 #container{
-    border: 1px solid black;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     width: 603px;
 
     margin-top: 50px;
 }
 #container >div{
   display: flex;
-  border: 1px solid red;
+  border-bottom:1px solid gray;
 }
 #container >div>img{
     width: 30%;
@@ -157,22 +157,31 @@ width: 400px;
     padding-bottom: 15px;
     background-color: #f7f7f7;
 }
-#apply>input{
+#apply1>input{
     padding: 10px 25px 10px 25px;
 }
 .innerbox{
     display: flex;
     justify-content: space-between;
+    width: 420px;
+    
 }
 .innerbox>button{
     height: 20px;
-   margin: 30px 60px;
+   margin-top: 30px;
+   margin-right: 15px;
+}
+.innerbox>button:hover{
+background-color: blue;
+color: white;
 }
 .innerbox>p{
     margin-top: -10px;
 }
 #innerbox{
     display: flex;
+    width: 100%;
+    
   
 }
 #innerbox>p{

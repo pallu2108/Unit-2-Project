@@ -94,9 +94,9 @@
    <hr>
    <p>Where can we send your order receipt to?</p>
    <h4>Email</h5>
-   <input type="text" placeholder="Enter the Email ID">
+   <input type="text" placeholder="Enter the Email ID" id="continue">
    <br>
-   <button>CONTINUE</button>
+   <button id="contactbtn">CONTINUE</button>
    <h2>Shipping</h2>
    <hr>
    <h2>Payment</h2>
@@ -137,6 +137,19 @@
     </div>
 </body>
 <script>
+   document.querySelector("#contactbtn").addEventListener("click",mycontact)
+      function mycontact(){
+          var email=document.querySelector("#continue").value
+          console.log(email)
+          localStorage.setItem("Email",email)
+      }
+      var estimate=localStorage.getItem("total")
+      var subtotal=document.querySelector("#subtotal")
+          subtotal.innerText= "$"+estimate+".00"
+      var Total=document.querySelector("#estimate")
+          Total.innerText= "$"+estimate+".00"
+
+
     var productbag=JSON.parse(localStorage.getItem("productbag"))
     productbag.map(function(el,i){
         var box=document.createElement("div")
