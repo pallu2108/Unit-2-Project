@@ -55,9 +55,18 @@
    
  }
  #container{
-     height: 100px;
-     border: 1px solid black;
-     margin-bottom: 10px;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+    margin-bottom: 10px;
+
+    margin-top: 20px;
+}
+#container >div{
+  display: flex;
+  border-bottom: 1px solid;
+  
+}
+#container >div>img{
+    width: 30%;
  }
  #rbox>p{
      font-size: 20px;
@@ -74,9 +83,7 @@
      text-align: center;
      margin-top: 30px;
  }
- #lbox{
-   
- }
+ 
  #upbox{
     display: flex;
     justify-content: space-between;
@@ -96,12 +103,18 @@
  .ad{
      margin-top: -50px;
  }
+ #sbox>p{
+     margin-top: -10px;
+
+ }
 </style>
 <body>
     <div id="main">
         <div id="lbox">
             <h2>Contact</h3>
-                <div id="contact"></div>
+                <div id="cont"> 
+                    
+                </div>
                 <hr>
                 <h2>Shipping</h2>
                 <div id="Shipping"></div>
@@ -123,23 +136,23 @@
 
  </div>
  <div id="total">
- <div>
-     <p>Subtotal</p>
-     <p>$148.00</p>
- </div>
- <div>
-     <p>Estimated Tax</p>
-     <p>--</p>
- </div>
- <div>
-     <p>Shipping</p>
-     <p>--</p>
- </div>
- <hr>
- <div>
- <h3>TOTAL <span>(2 Items)</span></h3>
- <p>$148.00</p>
-</div>
+    <div>
+        <p>Subtotal</p>
+        <p id="subtotal"></p>
+    </div>
+    <div>
+        <p>Estimated Tax</p>
+        <p>--</p>
+    </div>
+    <div>
+        <p>Shipping</p>
+        <p>Free</p>
+    </div>
+    <hr>
+    <div>
+    <h3>TOTAL <span>(2 Items)</span></h3>
+    <p id="estimate"></p>
+   </div>
 </div>
         </div>
     </div>
@@ -149,4 +162,64 @@
         <p>Privacy Policy | Product + Help Center  | Shipping</p> 
     </div>
 </body>
+<script>
+var contact= localStorage.getItem("Email")
+ console.log(contact)
+  var mailid=document.querySelector("#cont")
+  mailid.innerText=contact
+
+var shippinglist=JSON.parse(localStorage.getItem("contactdetail"))
+
+shippinglist.map(function(el,i){
+    var box=document.createElement("div")
+    box.setAttribute("id","sbox")
+    var Name=document.createElement("p")
+    Name.innerText=el.name
+    var Address=document.createElement("p")
+    Address.innerText=el.address
+    var City=document.querySelector("p")
+    City.innerText=el.city
+    var Phone=document.createElement("p")
+    Phone.innerText=el.phone
+    box.append(Name,Address,City,Phone)
+
+    document.querySelector("#Shipping").append(box)
+
+})
+
+
+var estimate=localStorage.getItem("total")
+      var subtotal=document.querySelector("#subtotal")
+          subtotal.innerText= "$"+estimate+".00"
+      var Total=document.querySelector("#estimate")
+          Total.innerText= "$"+estimate+".00"
+
+
+     var productbag=JSON.parse(localStorage.getItem("productbag"))
+    productbag.map(function(el,i){
+        var box=document.createElement("div")
+        var img=document.createElement("img")
+        img.src=el.image_url
+        var box2=document.createElement("div")
+        box2.setAttribute("class","innerbox")
+        
+        var box3=document.createElement("div")
+         var name=document.createElement("h3")
+       name.innerText=el.name
+       var para=document.createElement("p")
+       para.innerText="Qty: 1"
+       box3.append(name,para)
+        var box4=document.createElement("div")
+       var price=document.createElement("p")
+         price.innerText="$"+el.price +".00"
+         box4.append(price)
+       box2.append(box3,box4)
+      box.append(img,box2)
+
+    
+      
+      document.querySelector("#container").append(box)
+
+    })
+</script>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Shipping Page</title>
 </head>
 <style>
     #main{
@@ -217,7 +217,7 @@
                 <h2>Select Shipping Method:</h3>
                 <div id="method">
                     <div>
-                        <input type="radio" value="Ground (2-6 Business Day)" name="Shipping">Ground (2-6 Business Day)
+                        <input type="radio" value="Ground (2-6 Business Day)" name="Shipping" id="vishal">Ground (2-6 Business Day)
                         <p>$5.95</p>
                       
                     </div>
@@ -276,8 +276,15 @@
 </body>
 <script>
 
- document.querySelector("#lastbtn").addEventListener("click",btnfunction)
+var EMAILCONTACT= localStorage.getItem("Email")
 
+var textcontact=document.querySelector("#para1")
+textcontact.innerText=EMAILCONTACT  
+
+
+
+  document.querySelector("#lastbtn").addEventListener("click",btnfunction)
+var contactdetail=[];
 function btnfunction(){
    var name=document.querySelector("#name").value
    var lastname=document.querySelector("#lastname").value
@@ -287,17 +294,22 @@ function btnfunction(){
    var state=document.querySelector("#state").value
    var pin=document.querySelector("#pincode").value
    var phone=document.querySelector("#number").value
-   
+   var obj={
+       name:name+" " +lastname,
+       address:Address,
+       city:city+" " +state+" " +pin,
+       phone:phone
+     }
+   contactdetail.push(obj)
+   localStorage.setItem("contactdetail",JSON.stringify(contactdetail))
+ window.location.href="payment.html"
 }
 
 
 
 
 
-var contact= localStorage.getItem("Email")
-console.log(contact)
-var textcontact=document.querySelector("#para1")
-textcontact.innerText=contact
+
 
 
 
