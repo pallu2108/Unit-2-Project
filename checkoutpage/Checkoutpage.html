@@ -145,7 +145,12 @@ width: 400px;
  height: 31px;
 }
 #sym{
-    margin-top: 20px;
+    margin-top: 10px;
+    
+}
+#we{
+    font-size: 20px;
+   margin-top: -0px;
 }
 #main2 >button{
    margin-left: 50px;
@@ -254,7 +259,7 @@ color: white;
         <br>
      <button id="mainbtn2">SECURE CHECKOUT</button>
      <div id="sym">
-         <p>We accept</p>
+         <p id="we">We accept</p>
          <img src="https://www.rodanandfields.com/en-us/_ui/images/card-icons/cc-paypal.png" alt=""  class="img">
        <img src="https://www.rodanandfields.com/en-us/_ui/images/card-icons/cc-visa.png" alt=""  class="img">
        <img src="https://www.rodanandfields.com/en-us/_ui/images/card-icons/cc-mastercard.png" alt=""  class="img">
@@ -266,6 +271,7 @@ color: white;
     </div>
     </div>
 </div>
+
 </body>
 <script>
     var productbag=JSON.parse(localStorage.getItem("productbag"))
@@ -358,7 +364,7 @@ productbag.map(function(el,i){
     document.querySelector(".img").addEventListener("click",myimage)
 
     function myimage(){
-       window.location.reload()
+       window.location.href="https://paytm.com/"
     }
 </script>
 </html>
